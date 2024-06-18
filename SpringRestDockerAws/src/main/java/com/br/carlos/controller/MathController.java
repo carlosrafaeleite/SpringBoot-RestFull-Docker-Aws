@@ -16,7 +16,7 @@ import jakarta.websocket.server.PathParam;
 @RestController
 public class MathController {
 
-	private final AtomicLong counter = new AtomicLong();
+	
 
 	private SimpleMath math = new SimpleMath();
 
