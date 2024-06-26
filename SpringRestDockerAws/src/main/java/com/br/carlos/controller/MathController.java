@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.br.carlos.converter.NumberConverter;
 import com.br.carlos.converter.math.SimpleMath;
-import com.br.carlos.exceptions.UnsuprortedMathOperationException;
+import com.br.carlos.exceptions.ResourseNotFoundException;
 
 import jakarta.websocket.server.PathParam;
 
@@ -24,7 +24,7 @@ public class MathController {
 	public Double sum(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
 			throws Exception {
 		if (!NumberConverter.isnumerico(numberOne) || !NumberConverter.isnumerico(numberTwo)) {
-			throw new UnsuprortedMathOperationException("Insira valores numericos.");
+			throw new ResourseNotFoundException("Insira valores numericos.");
 		}
 		return math.sum(NumberConverter.converteNumber(numberOne), NumberConverter.converteNumber(numberTwo));
 	}
@@ -33,7 +33,7 @@ public class MathController {
 	public Double substrat(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
 			throws Exception {
 		if (!NumberConverter.isnumerico(numberOne) || !NumberConverter.isnumerico(numberTwo)) {
-			throw new UnsuprortedMathOperationException("Insira valores numericos.");
+			throw new ResourseNotFoundException("Insira valores numericos.");
 		}
 		return math.substrat(NumberConverter.converteNumber(numberOne), NumberConverter.converteNumber(numberTwo));
 	}
@@ -42,7 +42,7 @@ public class MathController {
 	public Double multiplication(@PathVariable("numberOne") String numberOne,
 			@PathVariable("numberTwo") String numberTwo) throws Exception {
 		if (!NumberConverter.isnumerico(numberOne) || !NumberConverter.isnumerico(numberTwo)) {
-			throw new UnsuprortedMathOperationException("Insira valores numericos.");
+			throw new ResourseNotFoundException("Insira valores numericos.");
 		}
 		return math.multiplication(NumberConverter.converteNumber(numberOne),NumberConverter.converteNumber(numberTwo));
 	}
@@ -51,7 +51,7 @@ public class MathController {
 	public Double division(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
 			throws Exception {
 		if (!NumberConverter.isnumerico(numberOne) || !NumberConverter.isnumerico(numberTwo)) {
-			throw new UnsuprortedMathOperationException("Insira valores numericos.");
+			throw new ResourseNotFoundException("Insira valores numericos.");
 		}
 		return math.division(NumberConverter.converteNumber(numberOne), NumberConverter.converteNumber(numberTwo));
 	}
@@ -60,7 +60,7 @@ public class MathController {
 	public Double media(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
 			throws Exception {
 		if (!NumberConverter.isnumerico(numberOne) || !NumberConverter.isnumerico(numberTwo)) {
-			throw new UnsuprortedMathOperationException("Insira valores numericos.");
+			throw new ResourseNotFoundException("Insira valores numericos.");
 		}
 		return math.media(NumberConverter.converteNumber(numberOne), NumberConverter.converteNumber(numberTwo));
 	}
@@ -68,7 +68,7 @@ public class MathController {
 	@RequestMapping(value = "/square/{numbersquare}", method = RequestMethod.GET)
 	public Double square(@PathVariable("numbersquare") String numbersquare) throws Exception {
 		if (!NumberConverter.isnumerico(numbersquare)) {
-			throw new UnsuprortedMathOperationException("Insira valores numericos.");
+			throw new ResourseNotFoundException("Insira valores numericos.");
 		}
 		return math.square(NumberConverter.converteNumber(numbersquare));
 	}

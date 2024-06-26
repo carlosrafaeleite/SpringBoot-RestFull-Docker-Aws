@@ -1,79 +1,67 @@
 package com.br.carlos.services;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.carlos.exceptions.ResourseNotFoundException;
 import com.br.carlos.model.Pessoa;
+import com.br.carlos.repository.PessoaRepository;
 
 @Service
 public class PessoaService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private final AtomicLong counter = new AtomicLong();
+	@Autowired
+	PessoaRepository pessoaRepository;
+
 	private Logger logger = Logger.getLogger(PessoaService.class.getName());
 
-	public Pessoa findById(String id) {
-
-		Pessoa pessoa = new Pessoa();
-		pessoa.setId(counter.incrementAndGet());
-		pessoa.setNome("carlos");
-		pessoa.setSobrenome("rosa");
-		pessoa.setEndereco("ubatuba");
-		pessoa.setSexo("M");
+	public Pessoa findById(Long id) {
 
 		logger.info("Pessoa aqui");
-		return pessoa;
+		return pessoaRepository.findById(id)
+				.orElseThrow(() -> new ResourseNotFoundException("Registro nao encontrado"));
 
 	}
 
 	public List<Pessoa> findall() {
 
-		List<Pessoa> pessoaall = new ArrayList<Pessoa>();
-
-		for (int i = 0; i < 8; i++) {
-
-			Pessoa pessoa = mockPessoa(i);
-			pessoaall.add(pessoa);
-		}
-
 		logger.info("Pessoa aqui All");
-		return pessoaall;
-
-	}
-
-	private Pessoa mockPessoa(int i) {
-		Pessoa pessoa = new Pessoa();
-		pessoa.setId(counter.incrementAndGet());
-		pessoa.setNome("carlos " + i);
-		pessoa.setSobrenome("rosa " + i);
-		pessoa.setEndereco("ubatuba " + i);
-		pessoa.setSexo("M");
-
-		return pessoa;
+		return pessoaRepository.findAll();
 	}
 
 	public Pessoa cadastrar(Pessoa pessoa) {
+		logger.info("cadastrando Pessoa");
+		return pessoaRepository.save(pessoa);
+	}
 
-		logger.info("cadastrando Pessoa aqui");
-		return pessoa;
-	}
-	
 	public Pessoa atualizar(Pessoa pessoa) {
-		
+
+		var entity = pessoaRepository.findById(pessoa.getId())
+				.orElseThrow(() -> new ResourseNotFoundException("Registro nao encontrado"));
+
+		entity.setNome(pessoa.getNome());
+		entity.setSobrenome(pessoa.getSobrenome());
+		entity.setEndereco(pessoa.getEndereco());
+		entity.setSexo(pessoa.getSexo());
 		logger.info("atualizando Pessoa aqui");
-		return pessoa;	
+
+		return pessoaRepository.save(entity);
 	}
-	public void excluir(String id) {
-		
+
+	public void excluir(Long id) {
+
+		Pessoa entity = pessoaRepository.findById(id)
+				.orElseThrow(() -> new ResourseNotFoundException("Registro nao encontrado"));
+
+		pessoaRepository.delete(entity);
 		logger.info("excluindo Pessoa aqui");
-		
+
 	}
 
 }

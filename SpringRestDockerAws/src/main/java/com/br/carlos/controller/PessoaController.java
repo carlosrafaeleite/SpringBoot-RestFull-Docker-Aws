@@ -1,11 +1,9 @@
 package com.br.carlos.controller;
 
-import java.awt.PageAttributes.MediaType;
 import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +23,7 @@ public class PessoaController implements Serializable {
 	PessoaService pessoaService;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public Pessoa pesquisaPorID(@PathVariable(value = "id") String id) throws Exception {
+	public Pessoa pesquisaPorID(@PathVariable(value = "id") Long id) throws Exception {
 		
 		return pessoaService.findById(id);
 	}
@@ -54,7 +52,7 @@ public class PessoaController implements Serializable {
 	
 
 	@RequestMapping(value = "excPessoa/{id}", method = RequestMethod.DELETE)
-	public void Excluir(@PathVariable(value = "id") String id) throws Exception {
+	public void Excluir(@PathVariable(value = "id") Long id) throws Exception {
 		
 		pessoaService.excluir(id);	
 	}

@@ -11,20 +11,20 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.br.carlos.exceptions.ExceptionResponse;
-import com.br.carlos.exceptions.UnsuprortedMathOperationException;
+import com.br.carlos.exceptions.ResourseNotFoundException;
 
 @ControllerAdvice
 @RestController
 public class CustomizeResponseEntityExceptionhHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(Exception.class)
-	public  final ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request){
+	public  final ResponseEntity<ExceptionResponse> handleNotFoundException(Exception ex, WebRequest request){
 		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(0), ex.getMessage(), request.getDescription(false));
-		return new ResponseEntity<ExceptionResponse>(exceptionResponse	, HttpStatus.BAD_REQUEST);		
+		return new ResponseEntity<ExceptionResponse>(exceptionResponse	, HttpStatus.NOT_FOUND);		
 	}
 	
-	@ExceptionHandler(UnsuprortedMathOperationException.class)
+	@ExceptionHandler(ResourseNotFoundException.class)
 	public  final ResponseEntity<ExceptionResponse> handleAllException(Exception ex, WebRequest request){
 		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(0), ex.getMessage(), request.getDescription(false));
