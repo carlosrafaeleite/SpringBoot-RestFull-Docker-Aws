@@ -7,8 +7,9 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.carlos.data.vo.v1.PessoaVo;
 import com.br.carlos.exceptions.ResourseNotFoundException;
-import com.br.carlos.model.Pessoa;
+
 import com.br.carlos.repository.PessoaRepository;
 
 @Service
@@ -21,26 +22,26 @@ public class PessoaService implements Serializable {
 
 	private Logger logger = Logger.getLogger(PessoaService.class.getName());
 
-	public Pessoa findById(Long id) {
+	public PessoaVo findById(Long id) {
 
-		logger.info("Pessoa aqui");
+		logger.info("PessoaVo aqui");
 		return pessoaRepository.findById(id)
 				.orElseThrow(() -> new ResourseNotFoundException("Registro nao encontrado"));
 
 	}
 
-	public List<Pessoa> findall() {
+	public List<PessoaVo> findall() {
 
-		logger.info("Pessoa aqui All");
+		logger.info("PessoaVo aqui All");
 		return pessoaRepository.findAll();
 	}
 
-	public Pessoa cadastrar(Pessoa pessoa) {
-		logger.info("cadastrando Pessoa");
+	public PessoaVo cadastrar(PessoaVo pessoa) {
+		logger.info("cadastrando PessoaVo");
 		return pessoaRepository.save(pessoa);
 	}
 
-	public Pessoa atualizar(Pessoa pessoa) {
+	public PessoaVo atualizar(PessoaVo pessoa) {
 
 		var entity = pessoaRepository.findById(pessoa.getId())
 				.orElseThrow(() -> new ResourseNotFoundException("Registro nao encontrado"));
@@ -49,18 +50,18 @@ public class PessoaService implements Serializable {
 		entity.setSobrenome(pessoa.getSobrenome());
 		entity.setEndereco(pessoa.getEndereco());
 		entity.setSexo(pessoa.getSexo());
-		logger.info("atualizando Pessoa aqui");
+		logger.info("atualizando PessoaVo aqui");
 
 		return pessoaRepository.save(entity);
 	}
 
 	public void excluir(Long id) {
 
-		Pessoa entity = pessoaRepository.findById(id)
+		PessoaVo entity = pessoaRepository.findById(id)
 				.orElseThrow(() -> new ResourseNotFoundException("Registro nao encontrado"));
 
 		pessoaRepository.delete(entity);
-		logger.info("excluindo Pessoa aqui");
+		logger.info("excluindo PessoaVo aqui");
 
 	}
 
