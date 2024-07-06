@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.carlos.model.Pessoa;
+import com.br.carlos.data.vo.v1.PessoaVo;
 import com.br.carlos.services.PessoaService;
 
 @RestController
@@ -27,21 +27,21 @@ public class PessoaController implements Serializable {
 	PessoaService pessoaService;
 	
 	@GetMapping(value = "/{id}",produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public Pessoa pesquisaPorID(@PathVariable(value = "id") Long id) throws Exception {
+	public PessoaVo pesquisaPorID(@PathVariable(value = "id") Long id) throws Exception {
 		
 		return pessoaService.findById(id);
 	}
 	
 	@GetMapping(value = "/userAll",produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public List<Pessoa> pesquisaAll(){
+	public List<PessoaVo> pesquisaAll(){
 		
-		return (List<Pessoa>) pessoaService.findall();
+		return (List<PessoaVo>) pessoaService.findall();
 	}
 	
 	@PostMapping(value = "/cadPessoa",
 			produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE,
 			consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public Pessoa cadastrarPessoa(@RequestBody Pessoa usuario ) throws Exception{
+	public PessoaVo cadastrarPessoa(@RequestBody PessoaVo usuario ) throws Exception{
 		
 		return pessoaService.cadastrar(usuario);	
 	}
@@ -49,7 +49,7 @@ public class PessoaController implements Serializable {
 	@PutMapping(value = "/atuPessoa",
 			produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE,
 			consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public Pessoa atualizarPessoa(@RequestBody Pessoa usuario ) throws Exception{
+	public PessoaVo atualizarPessoa(@RequestBody PessoaVo usuario ) throws Exception{
 		
 		return pessoaService.atualizar(usuario);	
 	}

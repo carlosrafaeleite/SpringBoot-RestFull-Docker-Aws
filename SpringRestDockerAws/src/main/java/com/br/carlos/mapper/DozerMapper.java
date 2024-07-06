@@ -1,8 +1,6 @@
 package com.br.carlos.mapper;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
@@ -14,12 +12,12 @@ public class DozerMapper {
 	private static Mapper mapper =  DozerBeanMapperBuilder.buildDefault();
 	
 	
-	public static <O,D> D parceObject(O origem, Class<D> destino) {
+	public static <O,D> D parseObject(O origem, Class<D> destino) {
 		return mapper.map(origem, destino);        
 		
 	}
 	
-	public static <O,D> List<D> parceLisytObjects(List<O> origem, Class<D> destino) {
+	public static <O,D> List<D> parseListObjects(List<O> origem, Class<D> destino) {
 		
 		List<D> destinoObjeto = new ArrayList<>();
 		
