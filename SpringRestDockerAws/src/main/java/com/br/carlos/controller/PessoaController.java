@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.carlos.data.vo.v1.PessoaVo;
+import com.br.carlos.data.vo.v2.PessoaVo2;
 import com.br.carlos.services.PessoaService;
 
 @RestController
@@ -44,6 +45,14 @@ public class PessoaController implements Serializable {
 	public PessoaVo cadastrarPessoa(@RequestBody PessoaVo usuario ) throws Exception{
 		
 		return pessoaService.cadastrar(usuario);	
+	}
+	
+	@PostMapping(value = "v2/cadPessoa",
+			produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE,
+			consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+	public PessoaVo2 cadastrarPessoa(@RequestBody PessoaVo2 usuario ) throws Exception{
+		
+		return pessoaService.cadastrarV2(usuario);	
 	}
 	
 	@PutMapping(value = "/atuPessoa",

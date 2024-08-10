@@ -13,8 +13,6 @@ import com.br.carlos.model.Pessoa;
 
 import br.com.erudio.unittests.mapper.mocks.MockPerson;
 
-
-
 public class DozerConverterTest {
     
     MockPerson inputObject;
@@ -35,7 +33,6 @@ public class DozerConverterTest {
         assertEquals("Male", output.getSexo());
     }
     
-    
     @Test
     public void parseEntityListToVOListTest() {
         List<PessoaVo> outputList = DozerMapper.parseListObjects(inputObject.mockEntityList(), PessoaVo.class);
@@ -49,11 +46,11 @@ public class DozerConverterTest {
         
         PessoaVo outputSeven = outputList.get(7);
         
-        assertEquals(Long.valueOf(0L), outputSeven.getId());
-        assertEquals("First Name Test0", outputSeven.getNome());
-        assertEquals("Last Name Test0", outputSeven.getSobrenome());
-        assertEquals("Addres Test0", outputSeven.getEndereco());
-        assertEquals("Male", outputSeven.getSexo());
+        assertEquals(Long.valueOf(7L), outputSeven.getId());
+        assertEquals("First Name Test7", outputSeven.getNome());
+        assertEquals("Last Name Test7", outputSeven.getSobrenome());
+        assertEquals("Addres Test7", outputSeven.getEndereco());
+        assertEquals("Female", outputSeven.getSexo()); // Ajuste para "Female"
         
         PessoaVo outputTwelve = outputList.get(12);
         

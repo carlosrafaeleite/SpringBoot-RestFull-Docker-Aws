@@ -1,7 +1,5 @@
 package com.br.carlos.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.br.carlos.converter.NumberConverter;
 import com.br.carlos.converter.math.SimpleMath;
 import com.br.carlos.exceptions.ResourseNotFoundException;
-
-import jakarta.websocket.server.PathParam;
 
 @RestController
 public class MathController {
