@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.carlos.data.vo.v1.PessoaVo;
-import com.br.carlos.data.vo.v2.PessoaVo2;
 import com.br.carlos.exceptions.ResourseNotFoundException;
 import com.br.carlos.mapper.DozerMapper;
 import com.br.carlos.model.Pessoa;
@@ -46,14 +45,7 @@ public class PessoaService implements Serializable {
 		return vo;
 	}
 	
-	public PessoaVo2 cadastrarV2(PessoaVo2 pessoa) {
-		logger.info("cadastrando PessoaVo");
-		
-		var entyty = DozerMapper.parseObject(pessoa, Pessoa.class);
-		var vo2 = DozerMapper.parseObject(pessoaRepository.save(entyty), PessoaVo2.class);
-		return vo2;
-	}
-
+	
 	public PessoaVo atualizar(PessoaVo pessoa) {
 
 		var entity = pessoaRepository.findById(pessoa.getId())
