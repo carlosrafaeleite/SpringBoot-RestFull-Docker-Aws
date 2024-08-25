@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import com.br.carlos.data.vo.v1.PessoaVo;
 import com.br.carlos.services.PessoaService;
 
 @RestController
-@RequestMapping(path = "/pessoa")
+@RequestMapping(path ="/api/pessoa/v1")
 public class PessoaController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,21 +27,21 @@ public class PessoaController implements Serializable {
 	@Autowired
 	PessoaService pessoaService;
 	
-	@GetMapping(value = "/{id}",produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public PessoaVo pesquisaPorID(@PathVariable(value = "id") Long id) throws Exception {
 		
 		return pessoaService.findById(id);
 	}
 	
-	@GetMapping(value = "/userAll",produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/userAll",produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public List<PessoaVo> pesquisaAll(){
 		
 		return (List<PessoaVo>) pessoaService.findall();
 	}
 	
 	@PostMapping(value = "/cadPessoa",
-			produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE,
-			consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} ,
+			consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public PessoaVo cadastrarPessoa(@RequestBody PessoaVo usuario ) throws Exception{
 		
 		return pessoaService.cadastrar(usuario);	
@@ -48,8 +49,8 @@ public class PessoaController implements Serializable {
 	
 
 	@PutMapping(value = "/atuPessoa",
-			produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE,
-			consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+			consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public PessoaVo atualizarPessoa(@RequestBody PessoaVo usuario ) throws Exception{
 		
 		return pessoaService.atualizar(usuario);	
