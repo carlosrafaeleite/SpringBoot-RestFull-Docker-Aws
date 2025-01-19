@@ -3,13 +3,18 @@ package com.br.carlos.data.vo.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.hateoas.RepresentationModel;
 
-public class PessoaVo implements Serializable {
+import com.github.dozermapper.core.Mapping;
+
+
+public class PessoaVo extends RepresentationModel<PessoaVo> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 
-	private Long id;
+	@Mapping("id")
+	private Long key;
 	private String nome;
 	private String sobrenome;
 	private String endereco;
@@ -19,13 +24,19 @@ public class PessoaVo implements Serializable {
 		
 	}
 
-	public Long getId() {
-		return id;
+	
+
+	public Long getKey() {
+		return key;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+
+	public void setKey(Long key) {
+		this.key = key;
 	}
+
+
 
 	public String getNome() {
 		return nome;
@@ -59,26 +70,59 @@ public class PessoaVo implements Serializable {
 		this.sexo = sexo;
 	}
 
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(endereco, id, nome, sexo, sobrenome);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
+		result = prime * result + ((key == null) ? 0 : key.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
+		result = prime * result + ((sobrenome == null) ? 0 : sobrenome.hashCode());
+		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		PessoaVo other = (PessoaVo) obj;
-		return Objects.equals(endereco, other.endereco) && Objects.equals(id, other.id)
-				&& Objects.equals(nome, other.nome) && Objects.equals(sexo, other.sexo)
-				&& Objects.equals(sobrenome, other.sobrenome);
+		if (endereco == null) {
+			if (other.endereco != null)
+				return false;
+		} else if (!endereco.equals(other.endereco))
+			return false;
+		if (key == null) {
+			if (other.key != null)
+				return false;
+		} else if (!key.equals(other.key))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (sexo == null) {
+			if (other.sexo != null)
+				return false;
+		} else if (!sexo.equals(other.sexo))
+			return false;
+		if (sobrenome == null) {
+			if (other.sobrenome != null)
+				return false;
+		} else if (!sobrenome.equals(other.sobrenome))
+			return false;
+		return true;
 	}
-	
-	
+
 	
 
 }

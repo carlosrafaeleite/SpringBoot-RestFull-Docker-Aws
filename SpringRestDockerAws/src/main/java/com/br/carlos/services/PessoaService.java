@@ -48,7 +48,7 @@ public class PessoaService implements Serializable {
 	
 	public PessoaVo atualizar(PessoaVo pessoa) {
 
-		var entity = pessoaRepository.findById(pessoa.getId())
+		var entity = pessoaRepository.findById(pessoa.getKey())
 				.orElseThrow(() -> new ResourseNotFoundException("Registro nao encontrado"));
 
 		entity.setNome(pessoa.getNome());

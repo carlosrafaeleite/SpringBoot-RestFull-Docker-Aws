@@ -27,7 +27,9 @@ public class PessoaController implements Serializable {
 	@Autowired
 	PessoaService pessoaService;
 	
-	@GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,
+			MediaType.APPLICATION_XML_VALUE,
+			})
 	public PessoaVo pesquisaPorID(@PathVariable(value = "id") Long id) throws Exception {
 		
 		return pessoaService.findById(id);
@@ -40,8 +42,8 @@ public class PessoaController implements Serializable {
 	}
 	
 	@PostMapping(value = "/cadPessoa",
-			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} ,
-			consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, } ,
+			consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, })
 	public PessoaVo cadastrarPessoa(@RequestBody PessoaVo usuario ) throws Exception{
 		
 		return pessoaService.cadastrar(usuario);	
@@ -49,8 +51,8 @@ public class PessoaController implements Serializable {
 	
 
 	@PutMapping(value = "/atuPessoa",
-			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-			consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, },
+			consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, })
 	public PessoaVo atualizarPessoa(@RequestBody PessoaVo usuario ) throws Exception{
 		
 		return pessoaService.atualizar(usuario);	
