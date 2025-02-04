@@ -4,12 +4,19 @@ spring:
     url: jdbc:mysql://localhost:3306/bdrestfull?useTimezone=true&serverTimezone=UTC
     username: root
     password: 221076
+
   jpa:
     open-in-view: false
     hibernate:
       ddl-auto: update
-   # properties:
-    #  hibernate:
-      #  dialect: org.hibernate.dialect.MySQLDialect
     show-sql: false
-    
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+springdoc:
+  pathsToMatch: /api/**/v1/**
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    use-root-path: true

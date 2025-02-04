@@ -1,4 +1,4 @@
-package br.com.erudio.unittests.mapper;
+package br.com.carlos.unittests.mapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,7 +11,7 @@ import com.br.carlos.data.vo.v1.PessoaVo;
 import com.br.carlos.mapper.DozerMapper;
 import com.br.carlos.model.Pessoa;
 
-import br.com.erudio.unittests.mapper.mocks.MockPerson;
+import br.com.carlos.unittests.mapper.mocks.MockPerson;
 
 public class DozerConverterTest {
     

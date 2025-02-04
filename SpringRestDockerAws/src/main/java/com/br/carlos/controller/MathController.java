@@ -10,13 +10,14 @@ import com.br.carlos.converter.math.SimpleMath;
 import com.br.carlos.exceptions.ResourseNotFoundException;
 
 @RestController
+@RequestMapping(path ="/api/sum/v1")
 public class MathController {
 
 	
 
 	private SimpleMath math = new SimpleMath();
 
-	@RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{numberOne}/{numberTwo}", method = RequestMethod.GET)
 	public Double sum(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
 			throws Exception {
 		if (!NumberConverter.isnumerico(numberOne) || !NumberConverter.isnumerico(numberTwo)) {
