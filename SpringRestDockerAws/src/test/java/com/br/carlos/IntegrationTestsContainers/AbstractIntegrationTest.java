@@ -31,7 +31,7 @@ public abstract class AbstractIntegrationTest {
             return Map.of(
                 "spring.datasource.url", mySQLContainer.getJdbcUrl(),
                 "spring.datasource.username", mySQLContainer.getUsername(),
-                "spring.datasource.password", mySQLContainer.getPassword() 
+                "spring.datasource.password", mySQLContainer.getPassword()
             );
         }
 
